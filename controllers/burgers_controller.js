@@ -42,7 +42,6 @@ router.put("/api/burger/:id", async function(req, res) {
   res.json(false);
 });
 
-
 // Export routes for server.js to use.
 module.exports = router;
 
