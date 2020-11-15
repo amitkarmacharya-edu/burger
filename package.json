@@ -1,0 +1,24 @@
+{
+  "name": "burger",
+  "version": "1.0.0",
+  "description": "a burger logger with MySQL, Node, Express, Handlebars and a homemade ORM (yum!).",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitkarmacharya-edu/burger.git"
+  },
+  "author": "amit karmacharya",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/amitkarmacharya-edu/burger/issues"
+  },
+  "homepage": "https://github.com/amitkarmacharya-edu/burger#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "mysql": "^2.18.1"
+  }
+}
