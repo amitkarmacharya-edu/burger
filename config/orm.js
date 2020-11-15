@@ -22,30 +22,33 @@ const orm = {
             con.query(queryString, [burgerName, devoured], function(err, result){
                 if(err) {
                     console.log("Err while inserting data into table");
-                    reject(err);
+                    reject(false);
                 }
 
                 // success
-                resolve(result);
+                resolve(true);
             });
         });
     },
 
-    updateOne: function(burderName, devoured, id) {
-        if(!this.findOne(burderName, id)){
+    updateOne: function(burgerName, devoured, id) {
+        if(!this.findOne(burgerName, id)){
             console.log("Burger NOT found!");
             return false;
         }
         let queryString = "UPDATE burgers SET burger_name=??, devoured=?? WHERE id=??";
         return new Promise(function(reject, resolve) {
-            if(err) {
-                console.log("Erro while updating burger info!", err);
-                reject(false);
-            }
-
-            // success
-            console.log("Successfully Updated Record");
-            resolve(true);
+            con.query(queryString, [burgername, devoured, id], function(err, result){
+                if(err) {
+                    console.log("Erro while updating burger info!", err);
+                    reject(false);
+                }
+    
+                // success
+                console.log("Successfully Updated Record");
+                resolve(true);
+            });
+            
         });
     },
 
