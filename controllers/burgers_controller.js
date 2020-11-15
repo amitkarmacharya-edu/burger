@@ -15,48 +15,33 @@ router.get("/", async function(req, res) {
   });
 
 router.post("/api/burger", async function(req, res) {
-  burger.inserOne(){
+    let { burgerName, devoured} = req.body;
 
-  }
-  cat.create([
-    "name", "sleepy"
-  ], [
-    req.body.name, req.body.sleepy
-  ], function(result) {
+    let status = await burger.insertOne(burgerName, devoured);
+
+    if(status){
+        res.json( { burgerName: burgerName, devoured: devoured, success: true});
+    }
     // Send back the ID of the new quote
-    res.json({ id: result.insertId });
-  });
+    res.json(false);
+  
 });
 
-router.put("/api/cats/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
+router.put("/api/burger/:id", async function(req, res) {
+  let { id } = req.params.id;
+  let { burgerName, devoured } = req.body;
 
-  console.log("condition", condition);
+  let status = await burger.updateOne(burgerName, devoured, id);
 
-  cat.update({
-    sleepy: req.body.sleepy
-  }, condition, function(result) {
-    if (result.changedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
+  // success
+  if(status) {
+      res.json({ burgerName: burgerName, devoured: devoured, success: true });
+  }
+
+  // failed
+  res.json(false);
 });
 
-router.delete("/api/cats/:id", function(req, res) {
-  var condition = "id = " + req.params.id;
-
-  cat.delete(condition, function(result) {
-    if (result.affectedRows == 0) {
-      // If no rows were changed, then the ID must not exist, so 404
-      return res.status(404).end();
-    } else {
-      res.status(200).end();
-    }
-  });
-});
 
 // Export routes for server.js to use.
 module.exports = router;

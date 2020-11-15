@@ -17,6 +17,7 @@ const orm = {
     },
 
     insertOne: function(burgerName, devoured) {
+
         let queryString = "INSERT INTO burgers (burger_name, devoured) VALUES (??,??)";
         return new Promise(function(reject, resolve) {
             con.query(queryString, [burgerName, devoured], function(err, result){
@@ -32,13 +33,13 @@ const orm = {
     },
 
     updateOne: function(burgerName, devoured, id) {
-        if(!this.findOne(burgerName, id)){
+        if(!this.findOne('id', id)){
             console.log("Burger NOT found!");
             return false;
         }
         let queryString = "UPDATE burgers SET burger_name=??, devoured=?? WHERE id=??";
         return new Promise(function(reject, resolve) {
-            con.query(queryString, [burgername, devoured, id], function(err, result){
+            con.query(queryString, [burgerName, devoured, id], function(err, result){
                 if(err) {
                     console.log("Erro while updating burger info!", err);
                     reject(false);
@@ -52,15 +53,18 @@ const orm = {
         });
     },
 
-    findOne: function(burgerName, id) {
-        let queryString = "SELECT * FROM burgers WHERE burger_name = ?? AND id = ??";
+    findOne: function(col, value) {
+        let queryString = "SELECT * FROM burgers WHERE ?? = ?";
         return new Promise(function(reject, resolve) {
-            con.query(queryString, [burgerName, id], function(err, result) {
+            con.query(queryString, [col, value], function(err, result) {
                 if(err) {
                     reject(false);
                 }
+                if(result) {
+                  reject(true);
+                }
                 // success
-                resolve(true);
+                resolve(false);
             });
         });
     }
