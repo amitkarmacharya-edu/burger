@@ -7,12 +7,18 @@ var burger = require("../models/burger.js");
 
 // routes
 router.get("/", async function(req, res) {
-    let burgers = burger.all();
+  let data;
+  try {
+    burgers = await burger.all();
+  }
+  catch (e) {
+    console.log(e);
+    error = { error : { message: "Error While Fetching the data" }};
+    burgers = error;
+  }
 
-    console.log(burgers);
-
-    res.render("index", burgers);
-  });
+  res.render('index', {burgers});
+});
 
 router.post("/api/burger", async function(req, res) {
     let { burgerName, devoured} = req.body;

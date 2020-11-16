@@ -1,4 +1,13 @@
 <h1>Burgers</h1>
 <ul>
-  {{burgers}}
+    {{#if burgers.error}}
+      <h1>{{burgers.error.message}}</h1>
+      {{else}}
+      {{#each burgers}}
+      <h1>{{id}}</h1>
+      <h1>{{burger_name}}</h1>
+      <h1>{{devoured}}</h1>  
+      {{/each}}
+    {{/if}}
+    
 </ul>
