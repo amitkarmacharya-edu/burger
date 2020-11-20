@@ -43,7 +43,7 @@ A burger logger with MySQL, Node, Express, Handlebars and a homemade ORM (yum!).
 
 ## Installation
 
-The following steps listed below will help guide you through the installation proces.
+The steps listed below will guide you through the installation proces.
   
 - Node.js
 
