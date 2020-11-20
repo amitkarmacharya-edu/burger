@@ -13,13 +13,7 @@ $(document).ready(function() {
 
       ui.item.remove();
 
-      $.ajax("/update/burger", {
-        method: "PUT",
-        data: d
-      }).then(function(data, status) {
-          // Reload the page to get the updated list
-          location.reload();
-        });
+      
     }
   });
 
