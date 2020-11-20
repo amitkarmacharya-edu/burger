@@ -37,9 +37,9 @@ const orm = {
             console.log("Burger NOT found!");
             return {status: false, message: "No such burger"};
         }
-        let queryString = "UPDATE burgers SET burger_name=?, devoured=? WHERE id=?";
+        let queryString = `UPDATE burgers SET burger_name='${burgerName}', devoured=${devoured} WHERE id=${id}`;
         return new Promise(function(resolve, reject) {
-            con.query(queryString, [burgerName, devoured, id], function(err, result){
+            con.query(queryString, function(err, result){
                 if(err) {
                     console.log("Error while updating burger info!", err);
                     reject(err);

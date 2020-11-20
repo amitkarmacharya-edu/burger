@@ -5,9 +5,8 @@ var router = express.Router();
 // Import the model (burgers.js) to use its database functions.
 var burger = require("../models/burger.js");
 
-// routes
 router.get("/", async function(req, res) {
-  let data;
+  let burgers;
   try {
     burgers = await burger.all();
   }
@@ -17,35 +16,40 @@ router.get("/", async function(req, res) {
     burgers = error;
   }
 
-  res.render('index', {burgers});
+  res.render("index", {burgers});
 });
 
-router.post("/api/burger", async function(req, res) {
-    let { burgerName, devoured} = req.body;
+router.post("/create/burger", async function(req, res) {
+    let { burgerName, devoured } = req.body;
 
-    let status = await burger.insertOne(burgerName, devoured);
-
-    if(status){
-        res.json( { burgerName: burgerName, devoured: devoured, success: true});
+    try {
+      let status = await burger.insertBurger(burgerName, devoured);
+      console.log(status);
+      res.status(200).end();
     }
-    // Send back the ID of the new quote
-    res.json(false);
-  
+    catch (e) {
+      console.log(e);
+      res.status(400).end();
+    }
+    
 });
 
-router.put("/api/burger/:id", async function(req, res) {
-  let { id } = req.params.id;
-  let { burgerName, devoured } = req.body;
+router.put("/update/burger", async function(req, res) {
 
-  let status = await burger.updateOne(burgerName, devoured, id);
+  let { burgerName, devoured, id } = req.body;
 
   // success
-  if(status) {
-      res.json({ burgerName: burgerName, devoured: devoured, success: true });
+  try {
+    let status = await burger.updateBurger(burgerName, devoured, id);
+    console.log(status)
+    res.status(200).end();
   }
-
-  // failed
-  res.json(false);
+  catch (e) {
+    // failed
+    console.log(e);
+    res.status(400).end();
+  }
+  
 });
 
 // Export routes for server.js to use.

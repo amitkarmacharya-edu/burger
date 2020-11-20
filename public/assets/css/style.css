@@ -1,0 +1,19 @@
+.jumbotron {
+    /* background-image: url('../images/burger.jpg'); */
+    background-image: url('../images/burger.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.burger-card {
+    cursor: pointer;
+}
+
+.fresh .burger-card {
+    background-color: beige;
+}
+
+.devour .burger-card {
+    background-color: whitesmoke;
+}
