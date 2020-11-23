@@ -1,6 +1,9 @@
 # Burger
 A burger logger with MySQL, Node, Express, Handlebars and a homemade ORM (yum!). Implemented the MVC design pattern using Node and MySQL to query and route data in your app, and Handlebars to generate your HTML.
 
+<br />
+
+[LIVE ON HEROKU](https://calm-ridge-69484.herokuapp.com/)
 
 <br />
 
@@ -11,7 +14,7 @@ A burger logger with MySQL, Node, Express, Handlebars and a homemade ORM (yum!).
 - [Installation](#installation)
 - [References](#references)
 - [License](#license)
-- [Author](#author-info)
+- [Author](#author)
 
 ---
 
